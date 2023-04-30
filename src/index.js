@@ -4,17 +4,10 @@ const fs = require("fs");
 const kuromojin = require("kuromojin");
 const createMatcher = require("morpheme-match-all");
 const yaml = require("js-yaml");
-
-const path = require("path");
-
-const defaultOptions = {
-  rulePath: __dirname + "/../dict/fukushi.yml"
-};
-const text = fs.readFileSync(path.resolve(defaultOptions.rulePath), "utf8");
+const data = yaml.safeLoad(fs.readFileSync(__dirname + "/../dict/fukushi.yml", "utf8"));
 
 function loadDictionaries() {
   const dictionaries = [];
-  const data = yaml.safeLoad(text);
 
   data.dict.forEach(function (item) {
     var form = "";
